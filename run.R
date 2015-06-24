@@ -4,8 +4,19 @@
 #spatial-temporal granger lasso
 refinedtest = test[,c(4:8,10:21)]
 input = t(refinedtest)
+
+#
+T =
 N = dim(input)[1]
-L = 
+L =
+S = 
+omega = 
+
+  
+p = N*L*omega
+q = (T-L+1)*S
+Y = matrix(0,q,1)
+X = matrix(0,q,p)
 
 #find (lamda,gama) pair min bic
 lamda2set = c(0,0.01,0.1,1,10,100)
@@ -21,7 +32,7 @@ gamasize = length(gamaset)
 cur = 1 
 for(i in 1:lamdasize){
   for(j in 1:gamasize){
-    betaGL = beta(input,gama,L)
+    betaGL = grangerlasso(Y,X,gamaset[j],T,S,N)
     dfgl = dfGL(lamda,gama,betam,N,p,X,Y)
     bicvalue = bic(betaGL, x, y,dfgl)
     #res[,,cur] = c(lamda2set[i],gamaset[j])

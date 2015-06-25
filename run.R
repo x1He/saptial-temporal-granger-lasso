@@ -4,6 +4,12 @@
 #spatial-temporal granger lasso
 refinedtest = test[,c(4:8,10:21)]
 input = t(refinedtest)
+#Y is a vector of q (time,latitude,longtitude). To get the vector for a varibale such as ndvi, 
+#sort year in order(start from L), then latitude in order, then longtitude in order to get the vector.
+Y =
+  
+# X is matrix with q X p, p is in form of (variable,lag,(latitude,longtitue)+(w1,w2)),each in order
+X = 
 
 #
 T =
@@ -32,7 +38,7 @@ gamasize = length(gamaset)
 cur = 1 
 for(i in 1:lamdasize){
   for(j in 1:gamasize){
-    betaGL = grangerlasso(Y,X,gamaset[j],T,S,N)
+    betaGL = grangerlasso(Y,X,gamaset[j],T,N,omega)
     dfgl = dfGL(lamda,gama,betam,N,p,X,Y)
     bicvalue = bic(betaGL, x, y,dfgl)
     #res[,,cur] = c(lamda2set[i],gamaset[j])

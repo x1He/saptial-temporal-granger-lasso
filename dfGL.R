@@ -1,4 +1,4 @@
-dfGL <- function(lamda,gama,betam,N,p,X,Y)
+dfGL <- function(lamda,gamma,betaGL,N,p,X,Y)
 {
   #beta = array(NA,c(p/N,p/N,N)
   beta = array(NA,c(p/N,1,N))

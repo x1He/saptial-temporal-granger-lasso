@@ -1,10 +1,8 @@
 #INPUTS:
 #Y: vector with length q, each Y can be a varibale such as ndvi or temperature
 #x: qxp matrix
-# based on the matlab version 
-
 #spatial-temporal granger lasso
-grangerlasso <-function(Y,X,gama,T,N,omega)
+grangerlasso <-function(Y,X,lamda2,gamma,T,N,L,omega)
 {
   #delta j can be I or exL(||w||/2)
   delta = array(NA,c(L*omega,L*omega,N)
@@ -29,8 +27,8 @@ grangerlasso <-function(Y,X,gama,T,N,omega)
   
   newY = rbind(Y,append2Y)
   newX = (1/sqrt(1+lamda2))*rbind(X,append2X)
-   
-  fit = glmnet( newX, newY, lambda=gama,family="gaussian",alpha=1)
+  # alpha value to choose
+  fit = glmnet( newX, newY, lamda=gamma,family="gaussian",alpha=1)
   vals2 = fit$beta
   
   return(vals2)

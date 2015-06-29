@@ -47,7 +47,7 @@ for(i in 1:lamdasize){
   for(j in 1:gammasize){
     betaGL = grangerlasso(Y,X,lamda2set[i],gammaset[j],T,N,L,omega)
     dfgl = dfGL(lamda,gamma,betaGL,N,p,X,Y)
-    bicvalue = bic(betaGL, x, y,dfgl)
+    bicvalue = bic(betaGL,X,Y,dfgl)
     
     if(i==1 && j==1){
       minbic = bicvalue
